@@ -1,5 +1,0 @@
-n1 = str(input('Digite um nome completo: ')).strip()
-print('Seu nome em Maiusculo é {}'.format(n1.upper()))
-print('Seu nome em Minusculo é {}'.format(n1.lower()))
-print('Seu nome ao todo tem {} letras'.format(len(n1)-n1.count(' ')))
-print('Seu primeiro nome tem {} letra'.format(n1.find(' ')))
