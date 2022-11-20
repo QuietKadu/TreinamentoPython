@@ -1,0 +1,6 @@
+n1 = int(input('Digite um número: '))
+n2 = str(n1)
+print('A Unidade desse número é {}'.format(n2[3]))
+print('A Dezena desse número é {}'.format(n2[2]))
+print('A Centena desse número é {}'.format(n2[1]))
+print('A Milhar desse número é {}'.format(n2[0]))
