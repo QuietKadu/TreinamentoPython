@@ -5,7 +5,7 @@ from sqlite3 import Error
 
 
 def ConexaoBanco():
-    caminho = "C:\\Users\\kaduk\\PycharmProjects\\Estudos\\Banco\\agenda"
+    caminho = "C:\\Python\\Aulas\\banco\\agenda.db"
     con = None
     try:
         con = sqlite3.connect(caminho)
