@@ -5,26 +5,27 @@ import openpyxl
 saud = 0
 nsaud = 0
 nuti = 0
-nulo = 0
 
 def main_program():
     def get_answers():
-        global saud, nsaud, nuti, nulo
+        global saud, nsaud, nuti
         try:
             result = int(answers1.get()) + int(answers2.get()) + int(answers3.get())
         except ValueError:
             result = 0
 
-        if 100 <= result <= 150:
+        if result >= 100:
             saud += 1
-        elif -30 <= result <= 70:
+            categoria = 'saudável'
+        elif result >= -30 and result <= 70:
             nsaud += 1
-        elif -150 <= result <= -90:
+            categoria = 'não saudável'
+        elif result <= -90:
             nuti += 1
-        else:
-            nulo += 1
+            categoria = 'meio-termo'
 
-        messagebox.showinfo("Resultado", f"Categoria: {'saudável' if saud > 0 else 'não saudável' if nsaud > 0 else 'meio-termo' if nuti > 0 else 'nulo'}\nResultado: {result}")
+        messagebox.showinfo("Resultado", f"Categoria: {categoria}\nResultado: {result}")
+
         update_excel()
 
     window = Tk()
@@ -78,7 +79,7 @@ def main_program():
     window.mainloop()
 
 def update_excel():
-    global saud, nsaud, nuti, nulo
+    global saud, nsaud, nuti
 
     try:
         book = openpyxl.load_workbook("Planilha_do_Grafico.xlsx")
@@ -86,9 +87,10 @@ def update_excel():
     except FileNotFoundError:
         book = openpyxl.Workbook()
         graphic_page = book.create_sheet("Grafico", 0)
-        graphic_page.append(["Saudável", "Não está saudável", "Desinformado", "Meio termo"])
+        graphic_page.append(["Saudável", "Não está saudável", "Meio-termo"])
 
-    graphic_page.append([saud, nsaud, nuti, nulo])
+    graphic_page.append([saud, nsaud, nuti])
+    
     book.save("Planilha_do_Grafico.xlsx")
 
 main_program()
